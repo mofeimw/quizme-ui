@@ -6,8 +6,6 @@ import './FlashCard.css'
 function FlashCard({question, answer}) {
   const [flipped, setFlipped] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [userInput, setUserInput] = useState('');
-  const [feedback, setFeedback] = useState('');
 
   useEffect(() => {
     setIsUpdating(true);
@@ -19,40 +17,12 @@ function FlashCard({question, answer}) {
     setFlipped(!flipped);
   };
 
-  const dontFlip = (e) => {
-    e.stopPropagation();
-  };
-
-  const handleInputChange = (e) => {
-    setUserInput(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (userInput.toLowerCase() === answer.toLowerCase()) {
-      setFeedback('Correct!');
-    } else {
-      setFeedback('Incorrect. Try again.');
-    }
-  };
-
   return (
     <>
       <div className={`flashcard ${isUpdating ? 'no-animation' : ''}`} onClick={flipCard}>
         <div className={`card ${flipped ? 'flipped' : ''}`}>
           <div className="front">
             <h1>{question}</h1>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={userInput}
-                onChange={handleInputChange}
-                placeholder="Enter your answer"
-                onClick={dontFlip}
-              />
-              <button type="submit" onClick={dontFlip}>Submit</button>
-            </form>
-            <p>{feedback}</p>
           </div>
 
           <div className="back">
