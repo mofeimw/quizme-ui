@@ -10,34 +10,37 @@ function App() {
     { question: 'What division of Amazon is a cloud computing service provider', answer: 'AWS' },
   ];
   const [index, setIndex] = useState(0);
+  const [flipClass, setFlipClass] = useState('');
+
+  const flipVertical = (newIndex) => {
+    setFlipClass('vertical-flip');
+    setTimeout(() => {
+      setIndex(newIndex);
+    }, 400); // update IN THE MIDDLE OF TRANSITION!
+    setTimeout(() => {
+      setFlipClass('');
+    }, 800);
+  };
 
   const previousCard = () => {
-    setIndex((prevIndex) => {
-      if (prevIndex === 0) {
-        return flashcards.length - 1;
-      } else {
-        return prevIndex - 1;
-      }
-    });
+    const newIndex = index === 0 ? flashcards.length - 1 : index - 1;
+    flipVertical(newIndex);
   };
 
   const nextCard = () => {
-    setIndex((prevIndex) => {
-      if (prevIndex === flashcards.length - 1) {
-        return 0;
-      } else {
-        return prevIndex + 1;
-      }
-    });
+    const newIndex = index === flashcards.length - 1 ? 0 : index + 1;
+    flipVertical(newIndex);
   };
 
   return (
     <>
       <div className="interface">
-        <FlashCard
-          question={flashcards[index].question}
-          answer={flashcards[index].answer}
-        />
+        <div className={`flashcard ${flipClass}`}>
+          <FlashCard
+            question={flashcards[index].question}
+            answer={flashcards[index].answer}
+          />
+        </div>
 
         <div className="arrows">
           <button onClick={previousCard}>Previous</button>

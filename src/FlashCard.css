@@ -38,3 +38,16 @@
     background-color: red;
     transform: rotateY(180deg);
 }
+
+.flashcard.vertical-flip {
+    animation: flipVertically 0.8s forwards;
+}
+
+@keyframes flipVertically {
+    from {
+        transform: rotateX(0);
+    }
+    to {
+        transform: rotateX(360deg);
+    }
+}
