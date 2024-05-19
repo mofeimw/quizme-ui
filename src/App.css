@@ -1,5 +1,99 @@
-.arrows {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0A092B;
+    /* background: linear-gradient(to top, #070616, #0d0a25, #0c0e34, #0d1044, #110f53); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #F6F7FB;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+}
+
+.interface {
+    margin-top: 10vh;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+button {
+    padding: 18px 25px;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: #303854;
+    color: #F6F7FB;
+    transition: background-color ease-out 0.2s;
+    font-weight: 500;
+}
+
+/* input { */
+/*     border: 0; */
+/*     height: 50px; */
+/*     border-radius: 5px; */
+/*     margin-right: 15px; */
+/*     padding: 0 20px; */
+/*     background-color: #7988bd; */
+/* } */
+
+input {
+    border: 0;
+    border-bottom: 4px solid #303854;
+    background-color: #0A092B;
+    color: white;
+    margin-right: 15px;
+    padding: 10px 3px;
+    width: 31vw;
+    font-size: 1rem;
+    transition: border-bottom ease-out 0.2s;
+}
+
+input:focus {
+    outline: 0;
+    border-bottom: 4px solid  #5db3de;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #5db3de;
+    color: #0A092B;
+}
+
+.arrow {
+    display: inline-block;
+    width: 75px;
+    position: absolute;
+    bottom: 50%;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}
+
+.arrow-left {
+    left: 20px;
+}
+
+.arrow-right {
+    right: 20px;
+}
+
+.shuffle {
+    margin-top: 100px;
+}
+
+.shuffle:hover {
+    background-color: #736ccc;
 }

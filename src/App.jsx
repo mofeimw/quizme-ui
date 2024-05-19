@@ -1,32 +1,36 @@
 import { useState } from 'react'
 import FlashCard from './FlashCard';
 import './App.css'
+import leftArrow from '/arrow-left.svg';
+import rightArrow from '/arrow-right.svg';
 
 function App() {
   const FLASHCARDS = [
     { question: 'When was Amazon founded', answer: '1994' },
     { question: 'What city is Amazon headquartered in', answer: 'Seattle' },
     { question: 'What was Amazon\'s original focus as a marketplace', answer: 'Books' },
-    { question: 'What division of Amazon is a cloud computing service provider', answer: 'AWS' },
+    { question: 'What Amazon division is a cloud computing service provider', answer: 'AWS' },
   ];
   const [flashcards, setFlashcards] = useState(FLASHCARDS);
   const [counter, setCounter] = useState(0);
-  const [status, setStatus] = useState('Studied: 0');
+  const [status, setStatus] = useState('Correct: 0');
   const [index, setIndex] = useState(0);
   const [flipClass, setFlipClass] = useState('');
   const [userInput, setUserInput] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [correct, setCorrect] = useState(false);
+  const [incorrect, setIncorrect] = useState(false);
 
   const flipVertical = (newIndex) => {
     setFlipClass('vertical-flip');
     setTimeout(() => {
       setIndex(newIndex);
-      setFeedback('');
       setUserInput('');
+      setIncorrect(false);
+      setCorrect(false);
     }, 400); // update IN THE MIDDLE OF TRANSITION!
     setTimeout(() => {
       setFlipClass('');
-    }, 800);
+    }, 700);
   };
 
   const previousCard = () => {
@@ -50,16 +54,18 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userInput.toLowerCase() === flashcards[index].answer.toLowerCase()) {
+      setCorrect(true);
+      setIncorrect(false);
       setUserInput('');
-      setFeedback('Correct!');
       setCounter((prevValue) => prevValue + 1);
       if (counter == flashcards.length - 1) {
-        setStatus("All Done!");
+        setStatus("You're All Done!");
       } else {
-        setStatus(`Studied: ${counter + 1}`);
+        setStatus(`Correct: ${counter + 1}`);
       }
     } else {
-      setFeedback('Incorrect. Try again.');
+      setIncorrect(true);
+      setCorrect(false);
     }
   };
 
@@ -72,24 +78,27 @@ function App() {
     setCounter(0);
     setIndex(0);
     flipVertical(0);
-    setFeedback('');
+    setIncorrect(false);
+    setCorrect(false);
     setUserInput('');
-    setStatus(`Studied: 0`);
+    setStatus(`Correct: 0`);
   }
 
   return (
     <>
       <div className="interface">
         <h1>Amazon Study Set</h1>
-        <h2>{status}</h2>
+        <h3>{status}</h3>
         <div className={`flashcard ${flipClass}`}>
           <FlashCard
             question={flashcards[index].question}
             answer={flashcards[index].answer}
+            correct={correct}
+            incorrect={incorrect}
           />
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
           <input
             type="text"
             value={userInput}
@@ -99,14 +108,11 @@ function App() {
           />
           <button type="submit" onClick={dontFlip}>Submit</button>
         </form>
-        <p>{feedback}</p>
 
-        <div className="arrows">
-          <button onClick={previousCard}>Previous</button>
-          <button onClick={nextCard}>Next</button>
-        </div>
+        <img className="arrow arrow-left" onClick={previousCard} src={leftArrow}/>
+        <img className="arrow arrow-right" onClick={nextCard} src={rightArrow}/>
 
-        <button onClick={shuffle}>Shuffle</button>
+        <button className="shuffle" onClick={shuffle}>Shuffle</button>
       </div>
     </>
   );
