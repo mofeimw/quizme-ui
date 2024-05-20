@@ -1,0 +1,36 @@
+.pile {
+    padding-top: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pilecard{
+    background-color: #1d1c4d;
+    color: #849ae3;
+    color: #93a3d9;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 4px 10px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background-color ease-out 0.2s;
+}
+
+.pilecard:hover {
+    cursor: pointer;
+    background-color: #2b2a70;
+}
+
+@media only screen and (max-width: 800px) {
+    .pilecard {
+        width: 80%;
+        margin-bottom: 5%;
+    }
+}

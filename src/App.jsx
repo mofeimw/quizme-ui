@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import FlashCard from './FlashCard';
+import Pile from './Pile';
 import './App.css'
 import leftArrow from '/arrow-left.svg';
 import rightArrow from '/arrow-right.svg';
@@ -84,6 +85,10 @@ function App() {
     setStatus(`Correct: 0`);
   }
 
+  const replaceCard = (index) => {
+    flipVertical(index);
+  }
+
   return (
     <>
       <div className="interface">
@@ -114,6 +119,8 @@ function App() {
 
         <img className="arrow arrow-left" onClick={previousCard} src={leftArrow}/>
         <img className="arrow arrow-right" onClick={nextCard} src={rightArrow}/>
+
+        <Pile flashcards={flashcards} currentIndex={index} replaceCard={replaceCard} />
       </div>
     </>
   );
