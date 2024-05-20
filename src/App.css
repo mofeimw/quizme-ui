@@ -90,10 +90,58 @@ button:hover {
     right: 20px;
 }
 
+.status {
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+
 .shuffle {
-    margin-top: 100px;
+    display: inline;
 }
 
 .shuffle:hover {
     background-color: #736ccc;
+}
+
+/* responsive */
+
+@media only screen and (max-width: 1200px) {
+    .arrow {
+        width: 8vw;
+        top: 40%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .arrow {
+        width: 10vw;
+        top: 21rem;
+    }
+
+    input {
+        width: 55vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .interface {
+        margin-top: 30vw;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .arrow {
+        width: 8vw;
+        top: 21rem;
+    }
+
+    button {
+        padding: 16px 20px;
+    }
+
+    input {
+        width: 43vw;
+    }
 }

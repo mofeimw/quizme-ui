@@ -88,7 +88,10 @@ function App() {
     <>
       <div className="interface">
         <h1>Amazon Study Set</h1>
-        <h3>{status}</h3>
+        <div>
+          <h3 className="status">{status}</h3>
+          <button className="shuffle" onClick={shuffle}>Shuffle</button>
+        </div>
         <div className={`flashcard ${flipClass}`}>
           <FlashCard
             question={flashcards[index].question}
@@ -111,8 +114,6 @@ function App() {
 
         <img className="arrow arrow-left" onClick={previousCard} src={leftArrow}/>
         <img className="arrow arrow-right" onClick={nextCard} src={rightArrow}/>
-
-        <button className="shuffle" onClick={shuffle}>Shuffle</button>
       </div>
     </>
   );
